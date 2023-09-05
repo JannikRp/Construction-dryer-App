@@ -33,7 +33,7 @@
             ],
             "styles": [
               "src/global.scss",
-              "src/styles.css"
+              "src/theme/variables.scss"
             ],
             "scripts": []
           },
@@ -139,7 +139,8 @@
   "cli": {
     "schematicCollections": [
       "@ionic/angular-toolkit"
-    ]
+    ],
+    "analytics": false
   },
   "schematics": {
     "@ionic/angular-toolkit:component": {
