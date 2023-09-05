@@ -1,17 +1,61 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>
-      Tab 1
-    </ion-title>
+    <ion-title>Anleitung Bautrockner</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <ion-card>
+    <ion-card-header (click)="toggleCard('power')">
+      Ein- und Ausschalten
+    </ion-card-header>
+    <ion-card-content [hidden]="!powerCardOpen">
+      <p>Um den Bautrockner einzuschalten, drücken Sie die Ein-Taste. Um ihn auszuschalten, drücken Sie die Aus-Taste.</p>
+    </ion-card-content>
+  </ion-card>
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+  <ion-card>
+    <ion-card-header (click)="toggleCard('temperature')">
+      Temperatur einstellen
+    </ion-card-header>
+    <ion-card-content [hidden]="!temperatureCardOpen">
+      <p>Verwenden Sie die Temperaturtasten, um die gewünschte Temperatur einzustellen.</p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+  <ion-card-header (click)="toggleCard('fan')">
+    Lüftergeschwindigkeit einstellen
+  </ion-card-header>
+  <ion-card-content [hidden]="!fanCardOpen">
+    <p>Verwenden Sie die Lüftertasten, um die Lüftergeschwindigkeit einzustellen. Sie können zwischen niedriger, mittlerer und hoher Geschwindigkeit wählen.</p>
+  </ion-card-content>
+</ion-card>
+
+<ion-card>
+  <ion-card-header (click)="toggleCard('timer')">
+    Timer verwenden
+  </ion-card-header>
+  <ion-card-content [hidden]="!timerCardOpen">
+    <p>Stellen Sie den Timer ein, um die Betriebszeit des Bautrockners festzulegen. Der Bautrockner schaltet sich automatisch aus, wenn die eingestellte Zeit abgelaufen ist.</p>
+  </ion-card-content>
+</ion-card>
+
+<ion-card>
+  <ion-card-header (click)="toggleCard('filter')">
+    Filter wechseln
+  </ion-card-header>
+  <ion-card-content [hidden]="!filterCardOpen">
+    <p>Wechseln Sie den Filter gemäß den Anweisungen in der Bedienungsanleitung, um eine optimale Leistung sicherzustellen.</p>
+  </ion-card-content>
+</ion-card>
+
+<ion-card>
+  <ion-card-header (click)="toggleCard('water')">
+    Wasserstand überprüfen
+  </ion-card-header>
+  <ion-card-content [hidden]="!waterCardOpen">
+    <p>Überprüfen Sie regelmäßig den Wasserstand im Behälter und füllen Sie ihn gegebenenfalls auf, um den Betrieb aufrechtzuerhalten.</p>
+  </ion-card-content>
+</ion-card>
 </ion-content>

@@ -6,7 +6,24 @@ import { Component } from '@angular/core';
   styleUrls: ['tab1.page.scss']
 })
 export class Tab1Page {
+  powerCardOpen = false;
+  temperatureCardOpen = false;
+  fanCardOpen = false;
+  timerCardOpen = false;
+  filterCardOpen = false;
+  waterCardOpen = false;
+  constructor() {
 
-  constructor() {}
 
+    
+  }
+
+  toggleCard(cardName: string) {
+    if (cardName === 'power') {
+      this.powerCardOpen = !this.powerCardOpen;
+    } else if (cardName === 'temperature') {
+      this.temperatureCardOpen = !this.temperatureCardOpen;
+    }
+    // Füge weitere Karten hinzu, wenn benötigt
+  }
 }
