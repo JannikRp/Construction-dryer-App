@@ -1,0 +1,7 @@
+{
+  "name": "ConstructiondryerApp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
