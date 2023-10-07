@@ -1,0 +1,32 @@
+/* signup.component.css */
+.login-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+  
+  ion-card {
+    width: 100%;
+    max-width: 400px;
+  }
+  
+  ion-card-title {
+    font-size: 24px;
+  }
+  
+  ion-list ion-item {
+    --ion-input-placeholder-color: var(--ion-color-medium);
+    --ion-input-background-color: #f0f0f0;
+    border-radius: 8px;
+  }
+  
+  ion-list ion-item ion-input {
+    --padding-start: 16px;
+    --padding-end: 16px;
+  }
+  
+  ion-button {
+    margin-top: 16px;
+  }
+  

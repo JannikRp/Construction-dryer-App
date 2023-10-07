@@ -1,0 +1,43 @@
+<!-- signup.component.html -->
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title class="ion-text-center">Account erstellen</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="login-form">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title class="ion-text-center">Willkommen</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <ion-list>
+          <ion-item>
+            <ion-input
+              type="email"
+              placeholder="E-Mail"
+              [(ngModel)]="user.email"
+              clearInput
+              required
+              email
+            ></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-input
+              type="password"
+              placeholder="Passwort"
+              [(ngModel)]="user.password"
+              clearInput
+              required
+            ></ion-input>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+
+      <ion-button expand="full" color="primary" (click)="onSubmit()">Registrieren</ion-button>
+    </ion-card>
+  </div>
+</ion-content>

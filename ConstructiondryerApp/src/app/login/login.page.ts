@@ -3,6 +3,8 @@ import { NavController } from '@ionic/angular';
 import { ToastController } from '@ionic/angular';
 import { AuthenticationService } from '../services/authentication.service';
 
+ 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -12,18 +14,21 @@ export class LoginPage {
   username: string = '';
   password: string = '';
 
-  constructor( private toastController: ToastController,  private authentication: AuthenticationService) {}
+  constructor(private navCtrl: NavController, private toastController: ToastController,  private authentication: AuthenticationService) {}
 
   login() {
-    // Hier kannst du deine Anmeldelogik implementieren
     
     try{
-      this.authentication.login(this.username, this.password); 
+      this.authentication.login(this.username, this.password)
+
     }catch{
       this.presentToastOnLoginFailed();      
       console.log('Anmeldung fehlgeschlagen');
-      // Hier könntest du eine Fehlermeldung anzeigen oder andere Aktionen ausführen
     }
+  }
+
+  NavigateToSignUp(){
+    this.navCtrl.navigateRoot('/sign-up');
   }
 
 

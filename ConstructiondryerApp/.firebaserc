@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "construction-dryer-app"
+  },
+  "targets": {
+    "construction-dryer-app": {
+      "hosting": {
+        "app": [
+          "construction-dryer-app"
+        ]
+      }
+    }
   }
 }

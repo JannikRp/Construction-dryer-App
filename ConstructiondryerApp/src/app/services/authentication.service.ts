@@ -1,6 +1,12 @@
 import { Injectable } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { BehaviorSubject } from 'rxjs';
+import {
+	Auth,
+	signInWithEmailAndPassword,
+	createUserWithEmailAndPassword,
+	signOut
+} from '@angular/fire/auth';
 
 
 @Injectable({
@@ -14,18 +20,31 @@ import { BehaviorSubject } from 'rxjs';
     public authenticationChange = this.authenticationChange$.asObservable();
 
 
-constructor(private navCtrl: NavController,) {
+constructor(private navCtrl: NavController, private auth: Auth) {
         
 }
 
-    login(username: string , password : string ){
-        if (username === 'Jannik' && password === 'Jannik') {
-            this.authenticationChange$.next(true);
-            this.navCtrl.navigateRoot('/tabs');
+   async login(username: string , password : string ){
+        try {
+			const user = await signInWithEmailAndPassword(this.auth, username, password)
+			this.authenticationChange$.next(true);
+			this.navCtrl.navigateRoot('/tabs');
+			return user;
+		} catch (e) {
+			return null;
+		} finally{
         }
-        else {
-        throw new Error;
-    }
+	}
+
+
+    async CreateAccount(username: string , password : string) {
+		try {
+			const user = await createUserWithEmailAndPassword(this.auth, username, password);
+            this.navCtrl.navigateRoot('/tabs')
+			return user;
+		} catch (e) {
+			return null;
+		}
+	}
 
     }
-}
