@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { ToastController } from '@ionic/angular';
 import { AuthenticationService } from '../services/authentication.service';
+import { ExceptionData } from '@capacitor/core/types/util';
+import { FirebaseError } from '@angular/fire/app';
 
  
 
@@ -16,14 +18,13 @@ export class LoginPage {
 
   constructor(private navCtrl: NavController, private toastController: ToastController,  private authentication: AuthenticationService) {}
 
-  login() {
+ async login() {
     
     try{
-      this.authentication.login(this.username, this.password)
+      await this.authentication.login(this.username, this.password)
 
-    }catch{
-      this.presentToastOnLoginFailed();      
-      console.log('Anmeldung fehlgeschlagen');
+    }catch (err: any) {
+     await this.presentToastOnLoginFailed(err.message);    
     }
   }
 
@@ -33,11 +34,11 @@ export class LoginPage {
 
 
   
-  async presentToastOnLoginFailed() {
+  async presentToastOnLoginFailed(message: string) {
     const toast = await this.toastController.create({
-      message: 'Nutzer oder Password falsch!',
-      duration: 1500,
-      color: 'Danger',
+      message: "Anmeldung Fehlgeschlagen:" + message,
+      duration: 2500,
+      color: 'danger',
     });
     toast.present();
   }

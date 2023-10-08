@@ -7,6 +7,8 @@ import {
 	createUserWithEmailAndPassword,
 	signOut
 } from '@angular/fire/auth';
+import { ExceptionCode } from '@capacitor/core';
+import { FirebaseError } from '@angular/fire/app';
 
 
 @Injectable({
@@ -31,19 +33,19 @@ constructor(private navCtrl: NavController, private auth: Auth) {
 			this.navCtrl.navigateRoot('/tabs');
 			return user;
 		} catch (e) {
-			return null;
-		} finally{
-        }
+			console.log 
+			throw (e);
+		} 
 	}
 
 
     async CreateAccount(username: string , password : string) {
 		try {
-			const user = await createUserWithEmailAndPassword(this.auth, username, password);
+			const user = await createUserWithEmailAndPassword(this.auth, username, password)
             this.navCtrl.navigateRoot('/tabs')
 			return user;
 		} catch (e) {
-			return null;
+			throw e;
 		}
 	}
 
