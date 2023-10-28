@@ -1,4 +1,3 @@
-import { User } from "@angular/fire/auth";
 import { JwtHelperService } from '@auth0/angular-jwt';
 
 export class AuthenticationExtensions {

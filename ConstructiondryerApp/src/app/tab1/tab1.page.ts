@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {  NavController, ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-tab1',
@@ -6,24 +7,50 @@ import { Component } from '@angular/core';
   styleUrls: ['tab1.page.scss']
 })
 export class Tab1Page {
-  powerCardOpen = false;
-  temperatureCardOpen = false;
-  fanCardOpen = false;
-  timerCardOpen = false;
-  filterCardOpen = false;
-  waterCardOpen = false;
-  constructor() {
+
+  constructor(private alertController: ToastController, private navCtrl: NavController, ) {
 
 
     
   }
 
-  toggleCard(cardName: string) {
-    if (cardName === 'power') {
-      this.powerCardOpen = !this.powerCardOpen;
-    } else if (cardName === 'temperature') {
-      this.temperatureCardOpen = !this.temperatureCardOpen;
-    }
-    // Füge weitere Karten hinzu, wenn benötigt
+  async selectOption(option: string) {
+  switch (option) {
+    case 'Anleitung':
+      this.navCtrl.navigateRoot('/instructions');
+      break;
+
+      case 'Trockner aufstellen':
+      break;
+
+      case 'Trockner abholen':
+        var alert = await this.alertController.create({
+          message: 'Noch nicht implementiert',
+          duration: 2000,
+          color: 'danger'
+            });
+
+        alert.present();
+      break;
+
+      case 'Messprotokoll erstellen':
+      var alert = await this.alertController.create({
+        message: 'Noch nicht implementiert',
+        duration: 2000,
+        color: 'danger'
+          });
+      alert.present();
+      break;
+      case 'Einstellungen':
+      var alert = await this.alertController.create({
+        message: 'Noch nicht implementiert',
+        duration: 2000,
+        color: 'danger'
+          });
+      alert.present();
+      break;
+    default:
+      break;
+  }
   }
 }

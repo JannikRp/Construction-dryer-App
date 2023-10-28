@@ -1,61 +1,54 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Anleitung Bautrockner</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content class="ion-text-center">
+  <ion-grid style="height: 100vh; display: flex; flex-direction: column; justify-content: center;">
+    <ion-row style="display: flex; justify-content: center;">
+      <ion-col size="12" size-md="6">
+        <ion-card (click)="selectOption('Anleitung')" class="custom-card">
+          <ion-card-content>
+            Anleitung
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
 
-<ion-content>
-  <ion-card>
-    <ion-card-header (click)="toggleCard('power')">
-      Ein- und Ausschalten
-    </ion-card-header>
-    <ion-card-content [hidden]="!powerCardOpen">
-      <p>Um den Bautrockner einzuschalten, drücken Sie die Ein-Taste. Um ihn auszuschalten, drücken Sie die Aus-Taste.</p>
-    </ion-card-content>
-  </ion-card>
+    <ion-row style="display: flex; justify-content: center;">
+      <ion-col size="12" size-md="6">
+        <ion-card (click)="selectOption('Trockner aufstellen')" class="custom-card">
+          <ion-card-content>
+            Trockner aufstellen
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
 
-  <ion-card>
-    <ion-card-header (click)="toggleCard('temperature')">
-      Temperatur einstellen
-    </ion-card-header>
-    <ion-card-content [hidden]="!temperatureCardOpen">
-      <p>Verwenden Sie die Temperaturtasten, um die gewünschte Temperatur einzustellen.</p>
-    </ion-card-content>
-  </ion-card>
+    <ion-row style="display: flex; justify-content: center;">
+      <ion-col size="12" size-md="6">
+        <ion-card (click)="selectOption('Trockner abholen')" class="custom-card">
+          <ion-card-content>
+            Trockner abholen
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
 
-  <ion-card>
-  <ion-card-header (click)="toggleCard('fan')">
-    Lüftergeschwindigkeit einstellen
-  </ion-card-header>
-  <ion-card-content [hidden]="!fanCardOpen">
-    <p>Verwenden Sie die Lüftertasten, um die Lüftergeschwindigkeit einzustellen. Sie können zwischen niedriger, mittlerer und hoher Geschwindigkeit wählen.</p>
-  </ion-card-content>
-</ion-card>
+    <ion-row style="display: flex; justify-content: center;">
+      <ion-col size="12" size-md="6">
+        <ion-card (click)="selectOption('Messprotokoll erstellen')" class="custom-card">
+          <ion-card-content>
+            Messprotokoll erstellen
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row style="display: flex; justify-content: center;">
+      <ion-col size="12" size-md="6">
+        <ion-card (click)="selectOption('Einstellungen')" class="custom-card">
+          <ion-card-content>
+            Einstellungen
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
 
-<ion-card>
-  <ion-card-header (click)="toggleCard('timer')">
-    Timer verwenden
-  </ion-card-header>
-  <ion-card-content [hidden]="!timerCardOpen">
-    <p>Stellen Sie den Timer ein, um die Betriebszeit des Bautrockners festzulegen. Der Bautrockner schaltet sich automatisch aus, wenn die eingestellte Zeit abgelaufen ist.</p>
-  </ion-card-content>
-</ion-card>
-
-<ion-card>
-  <ion-card-header (click)="toggleCard('filter')">
-    Filter wechseln
-  </ion-card-header>
-  <ion-card-content [hidden]="!filterCardOpen">
-    <p>Wechseln Sie den Filter gemäß den Anweisungen in der Bedienungsanleitung, um eine optimale Leistung sicherzustellen.</p>
-  </ion-card-content>
-</ion-card>
-
-<ion-card>
-  <ion-card-header (click)="toggleCard('water')">
-    Wasserstand überprüfen
-  </ion-card-header>
-  <ion-card-content [hidden]="!waterCardOpen">
-    <p>Überprüfen Sie regelmäßig den Wasserstand im Behälter und füllen Sie ihn gegebenenfalls auf, um den Betrieb aufrechtzuerhalten.</p>
-  </ion-card-content>
-</ion-card>
+   
+  </ion-grid>
 </ion-content>

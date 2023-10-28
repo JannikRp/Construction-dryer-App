@@ -1,18 +1,11 @@
-ion-card {
-    border: 1px solid #ddd;
-    margin: 10px;
-    border-radius: 5px;
-  
-    ion-card-header {
-      background-color: #007AFF; /* Header-Hintergrundfarbe */
-      color: white; /* Header-Textfarbe */
-      padding: 10px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-  
-    ion-card-content {
-      padding: 10px;
-    }
-  }
-  
+ion-card.custom-card {
+  background-color: #f0f0f0;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+  margin: 10px auto;
+  max-width: 300px;
+}
+
+ion-card-content {
+  font-size: 18px;
+  padding: 16px;
+}
