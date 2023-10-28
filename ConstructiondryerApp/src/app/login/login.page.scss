@@ -1,3 +1,23 @@
+
+.ion-content-custom {
+  --background: #0e0d0d; /* Hintergrundfarbe des Inhalts anpassen */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px; /* Passen Sie den Abstand zum Login-Bereich an */
+}
+
+.logo {
+  max-width: 150px; /* Passen Sie die Breite des Logos an */
+  max-height: 150px; /* Passen Sie die Höhe des Logos an */
+}
 .login-form {
     display: flex;
     justify-content: center;
