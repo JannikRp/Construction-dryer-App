@@ -5,10 +5,12 @@ import {
 	Auth,
 	signInWithEmailAndPassword,
 	createUserWithEmailAndPassword,
-	signOut
+	signOut,
+	User
 } from '@angular/fire/auth';
 import { ExceptionCode } from '@capacitor/core';
 import { FirebaseError } from '@angular/fire/app';
+import { AuthenticationExtensions } from './authentication.extentions';
 
 
 @Injectable({
@@ -16,30 +18,32 @@ import { FirebaseError } from '@angular/fire/app';
   })
 
   
-  export class AuthenticationService{
+  export class AuthenticationService extends AuthenticationExtensions {
 
     private authenticationChange$ =new BehaviorSubject<boolean>(false)
     public authenticationChange = this.authenticationChange$.asObservable();
 
 
 constructor(private navCtrl: NavController, private auth: Auth) {
-        
+	super();
 }
 
    async login(username: string , password : string ){
         try {
-			const user = await signInWithEmailAndPassword(this.auth, username, password)
+			 await signInWithEmailAndPassword(this.auth, username, password).then(async authResponse =>{
+				this.safeUserInformation(authResponse);
+			})
 			this.authenticationChange$.next(true);
 			this.navCtrl.navigateRoot('/tabs');
-			return user;
 		} catch (e) {
 			console.log 
 			throw (e);
 		} 
 	}
+	
 
 
-    async CreateAccount(username: string , password : string) {
+    async createAccount(username: string , password : string) {
 		try {
 			const user = await createUserWithEmailAndPassword(this.auth, username, password)
             this.navCtrl.navigateRoot('/tabs')
@@ -48,5 +52,40 @@ constructor(private navCtrl: NavController, private auth: Auth) {
 			throw e;
 		}
 	}
+
+	async isUserAuthenticated(): Promise<boolean> {
+		if (this.isAccessTokenAvailable())
+		{
+		  this.authenticationChange$.next(true);
+		  if (!await this.isAccessTokenExpired()) {
+			if (navigator.onLine) {
+			  // Token is expired, but we have a connection so we will attempt to refresh the token
+			  try {
+				//await this.refreshSession();
+				this.authenticationChange$.next(true);
+				return true;
+			  } catch (e) {
+				// Refresh failed, clear the storage
+				await this.clearStorage();
+				this.authenticationChange$.next(false);
+				return false;
+			  }
+			} else {
+			  // Token is expired, but no connection. We will check for the presence
+			  // of a refresh token, and if it exists, we will assume the login is still valid
+			  //return !!(await this.getRefreshToken());
+			  return false 
+			}
+		}else{
+		 return true
+		}
+		} else {
+		  // Access token is not expired, authentication is valid
+		  this.authenticationChange$.next(false);
+		  return false;
+		  
+		}
+	  }
+	
 
     }

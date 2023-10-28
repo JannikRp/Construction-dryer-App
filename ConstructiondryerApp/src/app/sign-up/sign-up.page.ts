@@ -23,7 +23,7 @@ export class SignUpPage implements OnInit {
 
   async onSubmit() {
     try {
-      await this.authentication.CreateAccount(this.user.email, this.user.password);
+      await this.authentication.createAccount(this.user.email, this.user.password);
     } catch (error) {
       await this.presentToastOnLoginFailed(error.message)
     }
