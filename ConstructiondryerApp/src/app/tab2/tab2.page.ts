@@ -2,6 +2,8 @@ import { Component, ViewChild, ElementRef } from '@angular/core';
 import { Barcode } from '@capacitor-mlkit/barcode-scanning';
 import { ToastController, LoadingController, Platform } from '@ionic/angular';
 import jsQR from 'jsqr';
+import { ConstructionDryer } from "../models/ConstructionDryer";
+import { HttpService } from '../services/http.service';
 @Component({
   selector: 'app-tab2',
   templateUrl: 'tab2.page.html',
@@ -24,13 +26,13 @@ export class Tab2Page {
   scanActive = false;
   scanResult :any ;
   loading : HTMLIonLoadingElement  = null ;
+  constructionDryer: ConstructionDryer;
 
-  constructor(private toastCtrl: ToastController,
-    private loadingCtrl: LoadingController,
-    private plt: Platform) {
+  constructor(private loadingCtrl: LoadingController,
+    private platform: Platform, private httpservice:HttpService) {
       const isInStandaloneMode = () =>
       'standalone' in window.navigator && window.navigator['standalone'];
-    if (this.plt.is('ios') && isInStandaloneMode()) {
+    if (this.platform.is('ios') && isInStandaloneMode()) {
       console.log('I am a an iOS PWA!');
       // E.g. hide the scan functionality!
     }
@@ -40,13 +42,11 @@ export class Tab2Page {
 
   reset() {
     this.scanResult = null;
-    this.startScan();
   }
   ngAfterViewInit() {
     this.canvasElement = this.canvas.nativeElement;
     this.canvasContext = this.canvasElement.getContext('2d');
     this.videoElement = this.video.nativeElement;
-    this.startScan();
   }
   
 
@@ -99,6 +99,12 @@ export class Tab2Page {
       if (code) {
         this.scanActive = false;
         this.scanResult = code.data;
+        this.httpservice.getDryerInformation(code.data).subscribe(dryer =>{
+        console.log(dryer);
+        this.constructionDryer = dryer;
+        console.log(this.constructionDryer);
+        this.videoElement.pause();
+        })
       } else {
         if (this.scanActive) {
           requestAnimationFrame(this.scan.bind(this));

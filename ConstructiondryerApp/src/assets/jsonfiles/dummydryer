@@ -1,17 +1,15 @@
 {
-    "Bautrockner": {
-      "ID":"123456789",
-      "Bauvorhaben": "Neubau Wohnkomplex",
-      "Kostenstelle": "KS-1234",
-      "Mieter": "Muster GmbH",
-      "Standort": {
-         "Adresse": "Musterstraße 123",
-         "Stadt": "Beispielstadt",
-         "Etage": 4,
-         "Lage": "Ostflügel",
-         "Zimmer": "Wohnzimmer"
-        },
-        "Zählerstand": "4535187",
-        "GPS": "53.578867,9.875979"
-      }
-    }
+    "ID": "123456789",
+    "ConstructionProject": "FOM Hochschule",
+    "CostCenter": "CC-1234",
+    "Tenant": "FOM Hochschule",
+    "Location": {
+      "Address": "Schäferkampsallee 16a",
+      "Postcode":"20357",
+      "City": "Hamburg",
+      "Floor": 1,
+      "Room": "HH SE 3"
+    },
+    "Counter": "4535187",
+    "GPS": "53.578867,9.875979"
+}

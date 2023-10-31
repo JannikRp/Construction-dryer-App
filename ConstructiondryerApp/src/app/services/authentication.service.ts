@@ -5,12 +5,9 @@ import {
 	Auth,
 	signInWithEmailAndPassword,
 	createUserWithEmailAndPassword,
-	signOut,
-	User
 } from '@angular/fire/auth';
-import { ExceptionCode } from '@capacitor/core';
-import { FirebaseError } from '@angular/fire/app';
-import { AuthenticationExtensions } from './authentication.extentions';
+
+import { AuthenticationExtensions } from './extensions/authentication.extentions';
 
 
 @Injectable({
@@ -56,7 +53,6 @@ constructor(private navCtrl: NavController, private auth: Auth) {
 	async isUserAuthenticated(): Promise<boolean> {
 		if (this.isAccessTokenAvailable())
 		{
-		  this.authenticationChange$.next(true);
 		  if (!await this.isAccessTokenExpired()) {
 			if (navigator.onLine) {
 			  // Token is expired, but we have a connection so we will attempt to refresh the token
@@ -74,6 +70,7 @@ constructor(private navCtrl: NavController, private auth: Auth) {
 			  // Token is expired, but no connection. We will check for the presence
 			  // of a refresh token, and if it exists, we will assume the login is still valid
 			  //return !!(await this.getRefreshToken());
+			  this.authenticationChange$.next(false);
 			  return false 
 			}
 		}else{

@@ -1,35 +1,66 @@
-<ion-header>
-  <ion-toolbar color="primary">
-    <ion-title>
-      Ionic QR Scanner
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
-  <!-- Fallback for iOS PWA -->
-  <input #fileinput type="file" accept="image/*;capture=camera" hidden (change)="handleFile($event)">
 
-  <ion-button expand="full" (click)="reset()" color="warning" *ngIf="scanResult">
-    <ion-icon slot="start" name="refresh"></ion-icon>
-    Reset
-  </ion-button>
-
-  <!-- Shows our camera stream -->
   <video #video [hidden]="!scanActive" width="100%"></video>
-
-  <!-- Used to render the camera stream images -->
   <canvas #canvas hidden></canvas>
 
-
-
-  <ion-card *ngIf="scanResult">
+  <ion-card class="custom-card" [hidden]="scanActive">
     <ion-card-header>
-      <ion-card-title>QR Code</ion-card-title>
+      Informationen
     </ion-card-header>
-    <ion-card-content>
-      {{ scanResult }}
+    <ion-card-content class="custom-card-content">
+      <ion-list>
+        <ion-item>
+          <ion-label>ID:</ion-label>
+          {{ constructionDryer?.ID }}
+        </ion-item>
+        <ion-item>
+          <ion-label>Bauvorhaben:</ion-label>
+          {{ constructionDryer?.ConstructionProject }}
+        </ion-item>
+        <ion-item>
+          <ion-label>Kostenstelle:</ion-label>
+          {{ constructionDryer?.CostCenter }}
+        </ion-item>
+        <ion-item>
+          <ion-label>Mieter:</ion-label>
+          {{ constructionDryer?.Tenant }}
+        </ion-item>
+        <ion-item>
+          <ion-label>Adresse:</ion-label>
+          {{ constructionDryer?.Location.Address }}
+        </ion-item>
+        <ion-item>
+          <ion-label>Stadt:</ion-label>
+          {{ constructionDryer?.Location.City }}
+        </ion-item>
+        <ion-item>
+          <ion-label>PLZ:</ion-label>
+          {{ constructionDryer?.Location.Postcode }}
+        </ion-item>
+        <ion-item>
+          <ion-label>Etage:</ion-label>
+          {{ constructionDryer?.Location.Floor }}
+        </ion-item>
+        <ion-item>
+          <ion-label>Zimmer:</ion-label>
+          {{ constructionDryer?.Location.Room }}
+        </ion-item>
+        <ion-item>
+          <ion-label>Zählerstand:</ion-label>
+          {{ constructionDryer?.Counter }}
+        </ion-item>
+        <ion-item>
+          <ion-label>GPS:</ion-label>
+          {{ constructionDryer?.GPS }}
+        </ion-item>
+      </ion-list>
     </ion-card-content>
   </ion-card>
+  
 
+  <ion-fab [hidden]="scanActive" slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button (click)="startScan()">
+      <ion-icon name="scan"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>
